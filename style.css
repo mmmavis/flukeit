@@ -17,6 +17,10 @@ nav {
   background: #cee3f8;
 }
 
+.green-text {
+  color: #228822;
+}
+
 #top-nav {
   display: flex;
   justify-content: space-between;
@@ -48,9 +52,33 @@ nav {
   font-size: 1.2em;
 }
 
-
 #container {
   display: flex;
+  margin: 5px;
+}
+
+#main-post {
+  display: flex;
+}
+
+#main-post header {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: medium;
+}
+
+#main-post .subhead {
+  color: #888;
+  font-size: x-small;
+}
+
+#main-post .content {
+  background-color: #fafafa;
+  border: 1px solid #369;
+  border-radius: 7px;
+  padding: 5px 10px;
+  font-size: 14px;
+  margin: 5px 20px 5px 0;
 }
 
 footer {
