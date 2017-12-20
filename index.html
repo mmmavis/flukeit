@@ -9,6 +9,7 @@
     <script type="text/javascript" src="lib/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="lib/handlebars-v4.0.11.js"></script>
     <script type="text/javascript" src="lib/moment.js"></script>
+
     <script id="comment-template" type="text/x-handlebars-template">
       <div class="comment" data-id="{{id}}">
         <div class="vote-controls">
@@ -21,7 +22,10 @@
             <span class="blue-text" style="margin-right: 5px;">{{submitter}}</span>
             <span class="grey-text">{{timeFromNow timestamp}}</span>
           </div>
-          <div class="content">{{content}}</div>
+          <div class="content">
+            <img src="{{imgSrc}}">
+            <div>{{content}}</div>
+          </div>
           <div>
             <button class="btn-reply" data-id="{{id}}">reply</button>
             <div class="reply"></div>
@@ -30,6 +34,7 @@
         </div>
       </div>
     </script>
+
     <script id="new-comment-template" type="text/x-handlebars-template">
       <form class="new-comment" data-parent-id="{{parentId}}">
         <div><textarea name="content" rows=10 cols=75></textarea></div>

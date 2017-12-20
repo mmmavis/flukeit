@@ -137,6 +137,10 @@ main {
   margin: 10px 0;
 }
 
+.comment img {
+  max-width: 100%;
+}
+
 .comment-main {
   margin-left: 10px;
 }
