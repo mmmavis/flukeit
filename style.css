@@ -164,6 +164,11 @@ main {
   margin: 10px 0;
 }
 
+.comment .comment {
+  border-left: 1px dotted #DDF;
+  padding-left: 10px;
+}
+
 .comment-main {
   margin-left: 10px;
 }
