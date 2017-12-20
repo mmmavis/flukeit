@@ -66,7 +66,7 @@ function renderComment($conatiner, comment) {
       var reply = comment.replies[key];
       // console.log(reply, $("[data-id="+comment.id+"]"));
       reply.id = key;
-      renderComment($("[data-id="+comment.id+"] .replies"), reply);
+      renderComment($("[data-id="+comment.id+"] .replies:eq(0)"), reply);
     });
   }
 }
