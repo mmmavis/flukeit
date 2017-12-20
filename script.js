@@ -82,7 +82,25 @@ function generateNewCommentFormHtml(parentId) {
   return template({parentId: parentId});
 }
 
+function uploadImage(file, cb) {
+  var storageRef = firebase.storage().ref("images/" + file.name);
+  var task = storageRef.put(file); // upload file
+  task.on("state_changed",
+    function progress(snapshot) {
+      // var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      // progressBar.val(percentage);
+    },
+    function error(error) {
 
+    },
+    function complete() {
+      var downloadURL = task.snapshot.downloadURL;
+      cb(downloadURL);
+    }
+  );
+}
+
+// submit new comment
 $("body").on("submit", ".new-comment", function(event) {
   event.preventDefault();
 
@@ -91,27 +109,40 @@ $("body").on("submit", ".new-comment", function(event) {
   var content = $(this).find("[name=content]").val().replace(/\n/g,"<br>");
   var imgSrc = $(this).find("[name=imgSrc]").val();
 
+  // ref to Firebase
   var ref = getOwnFullRefPathsFromDom($(this));
   if ($(this).parents(".comment").length > 0) {
     ref += "/replies";
   }
-  var newCommentRef = firebase.database().ref(ref).push();
 
-  newCommentRef.set({
+  // check if user wanna upload an image
+  var imageFile = $(this).find("[name=image]")[0].files[0];
+  if (imageFile) {
+    uploadImage(imageFile, function(imageShareUrl) {
+      imgSrc = imageShareUrl;
+      sendComment(ref, timestamp, submitter, content, imgSrc);
+    })
+  } else {
+    sendComment(ref, timestamp, submitter, content, imgSrc);
+  }
+});
+
+function sendComment(ref, timestamp, submitter, content, imgSrc, done) {
+  var newCommentRef = firebase.database().ref(ref).push();
+  var task = newCommentRef.set({
     timestamp: timestamp,
     voteCount: 0,
     submitter: submitter,
     content: content,
     imgSrc: imgSrc,
     replies: null
-  });
-
-  // clear form
-  // $("[name=submitter], [name=content], [name=imgSrc]").val("");
-
-  // a cheat... lol
-  window.location.reload(true);
-});
+  }, function complete() {
+      // reload page so new comment shows... a cheat... lol
+      window.location.reload(true);
+      done();
+    }
+  );
+}
 
 function getOwnFullRefPathsFromDom($elem) {
   var refPaths = [];

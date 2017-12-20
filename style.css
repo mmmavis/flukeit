@@ -12,7 +12,7 @@ body {
 }
 
 textarea,
-input {
+input[name!=file] {
   border-style: inset;
   margin-bottom: 5px;
   max-width: 100%;
