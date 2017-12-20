@@ -57,6 +57,10 @@ nav {
   margin: 5px;
 }
 
+main {
+  margin-right: 10px;
+}
+
 #main-post {
   display: flex;
 }
@@ -79,6 +83,17 @@ nav {
   padding: 5px 10px;
   font-size: 14px;
   margin: 5px 20px 5px 0;
+}
+
+#comments-section {
+  margin: 10px;
+}
+
+#comments-section header {
+  font-size: 16px;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  border-bottom: 1px dotted gray;
 }
 
 footer {
