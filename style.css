@@ -112,7 +112,6 @@ main {
 }
 
 #main-post header {
-  text-transform: uppercase;
   font-weight: bold;
   font-size: medium;
 }
