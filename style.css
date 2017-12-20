@@ -107,6 +107,7 @@ main {
 }
 
 .vote-controls img {
+  cursor: pointer;
   align-self: center;
 }
 

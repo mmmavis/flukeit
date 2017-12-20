@@ -113,8 +113,33 @@ $("body").on("submit", ".new-comment", function(event) {
 });
 
 $("#comments").on("click", ".btn-reply", function(event) {
-  event.stopPropagation();
-
   var $reply = $(this).parent().find(".reply");
   $reply.html(generateNewCommentFormHtml($(this).data("id")));
+});
+
+$("#comments").on("click", "img", function(event) {
+  var $comment = $(this).parents(".comment:eq(0)");
+  var commentKey = $comment.data("id");
+
+  var refPaths = [];
+  $(this).parents(".comment").each(function() {
+    refPaths.push($(this).data("id"));
+  });
+
+  var ref = 'comments/' + refPaths.reverse().join("/replies/");
+  var currentCount = parseInt($comment.find(".count:eq(0)")[0].innerText);
+  var newCount = currentCount;
+
+  if ($(this).hasClass("upvote")) {
+    newCount++;
+  }
+
+  if ($(this).hasClass("downvote")) {
+    newCount--;
+  }
+
+  var commentRef = firebase.database().ref(ref).update({
+    voteCount: newCount,
+  });
+  $comment.find(".count:eq(0)")[0].innerText = newCount;
 });
