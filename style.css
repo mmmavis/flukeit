@@ -15,6 +15,15 @@ textarea,
 input {
   border-style: inset;
   margin-bottom: 5px;
+  max-width: 100%;
+}
+
+textarea {
+  width: 100%;
+}
+
+img {
+  max-width: 100%;
 }
 
 nav {
@@ -22,6 +31,16 @@ nav {
   flex-direction: column;
   border-bottom: 1px solid #5f99cf;
   background: #cee3f8;
+}
+
+#right-sidebar {
+  display: none;
+}
+
+@media only screen and (min-width: 480px) {
+  #right-sidebar {
+    display: block;
+  }
 }
 
 .green-text {
@@ -74,6 +93,7 @@ nav {
 
 main {
   margin-right: 10px;
+  max-width: 100%;
 }
 
 #main-post {
@@ -137,10 +157,6 @@ main {
   margin: 10px 0;
 }
 
-.comment img {
-  max-width: 100%;
-}
-
 .comment-main {
   margin-left: 10px;
 }
@@ -148,6 +164,12 @@ main {
 .comment .content {
   margin-top: 2px;
   font-size: 14px;
+}
+
+@media only screen and (min-width: 480px) {
+  .comment .content img {
+    max-width: 300px;
+  }
 }
 
 .comment .btn-reply {
