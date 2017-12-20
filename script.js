@@ -110,6 +110,9 @@ $("body").on("submit", ".new-comment", function(event) {
 
   // clear form
   $("[name=submitter], [name=content], [name=imgSrc]").val("");
+
+  // a cheat... lol
+  window.location.reload(true);
 });
 
 $("#comments").on("click", ".btn-reply", function(event) {

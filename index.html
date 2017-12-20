@@ -23,7 +23,7 @@
             <span class="grey-text">{{timeFromNow timestamp}}</span>
           </div>
           <div class="content">
-            <img src="{{imgSrc}}">
+            {{#if imgSrc}}<img src="{{imgSrc}}">{{/if}}
             <div>{{content}}</div>
           </div>
           <div>
