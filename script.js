@@ -89,7 +89,7 @@ $("body").on("submit", ".new-comment", function(event) {
 
   var timestamp = Date.now().toString();
   var submitter = $(this).find("[name=submitter]").val();
-  var content = $(this).find("[name=content]").val();
+  var content = $(this).find("[name=content]").val().replace(/\n/g,"<br>");
   var imgSrc = $(this).find("[name=imgSrc]").val();
   var paretnId = $(this).data("parent-id");
 
