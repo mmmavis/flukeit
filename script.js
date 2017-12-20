@@ -132,6 +132,11 @@ $("#comments").on("click", ".btn-reply", function(event) {
   $reply.html(generateNewCommentFormHtml($(this).data("id")));
 });
 
+$("#comments").on("click", ".btn-share", function(event) {
+  var commentId = $(this).parents(".comment:eq(0)").data("id");
+  $(this).after("<input value='" + window.location.href + "#" +commentId + "' readonly>");
+});
+
 $("#comments").on("click", "img", function(event) {
   var $comment = $(this).parents(".comment:eq(0)");
   var commentKey = $comment.data("id");
