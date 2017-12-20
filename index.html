@@ -37,9 +37,9 @@
 
     <script id="new-comment-template" type="text/x-handlebars-template">
       <form class="new-comment" data-parent-id="{{parentId}}">
-        <div><textarea name="content" rows=10 cols=75></textarea></div>
+        <div><textarea name="content" rows=10 cols=75 required></textarea></div>
         <div>Image url (if any): <input name="imgSrc" /></div>
-        <div>Your name: <input name="submitter" /></div>
+        <div>Your name: <input name="submitter" required /></div>
         <div>
           <button type="submit">save</button>
         </div>
