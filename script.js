@@ -1,3 +1,6 @@
+// please don't judge my code below lol
+// my goal is to quickly get the page working :D
+
 $("#top-level-new-comment").html(generateNewCommentFormHtml());
 
 Handlebars.registerHelper("timeFromNow", function(timestamp) {
@@ -23,15 +26,19 @@ firebase.auth().signInAnonymously().catch(function(error) {
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     // User is signed in.
-    var isAnonymous = user.isAnonymous;
-    var uid = user.uid;
-    // ...
-    console.log("user");
-    renderAllComments();
+    // var isAnonymous = user.isAnonymous;
+    // var uid = user.uid;
+    // console.log("user");
+
+    renderAllComments(function() {
+      var anchorElemId = window.location.hash;
+      if (anchorElemId) {
+        document.querySelector(anchorElemId).scrollIntoView({ behavior: "smooth" });
+      }
+    });
   } else {
     // User is signed out.
-    // ...
-    console.log("out");
+    // console.log("out");
   }
 });
 
@@ -42,7 +49,7 @@ function createCommentHTML(comment) {
   return template(comment);
 }
 
-function renderAllComments() {
+function renderAllComments(done) {
   var $conatiner = $("#comments");
 
   firebase.database().ref('/comments').once('value').then(function(snapshot) {
@@ -54,6 +61,8 @@ function renderAllComments() {
       comment.id = key;
       renderComment($conatiner, comment);
     })
+
+    done();
   });
 }
 
