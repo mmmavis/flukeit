@@ -11,7 +11,11 @@
     <script type="text/javascript" src="moment.js"></script>
     <script id="comment-template" type="text/x-handlebars-template">
       <div class="comment" data-id="{{id}}">
-        <div class="vote-controls">vote</div>
+        <div class="vote-controls">
+          <img src="upvote.png" width=15 />
+          <div class="count">{{voteCount}}</div>
+          <img src="downvote.png" width=15 />
+        </div>
         <div class="comment-main">
           <div>
             <span class="blue-text" style="margin-right: 5px;">{{submitter}}</span>
@@ -56,8 +60,12 @@
     <div id="container">
       <main>
         <div id="main-post">
-          <div class="vote-controls">vote</div>
-          <div style="margin-left: 10px;">icon</div>
+          <div class="vote-controls">
+            <img src="upvote.png" width=15 />
+            <div class="count">1000</div>
+            <img src="downvote.png" width=15 />
+          </div>
+          <div style="margin-left: 10px;"><img src="bubble.png" width=50 /></div>
           <div style="margin-left: 10px;">
             <header class="green-text">header 12345 header 12345 header 12345 <span class="grey-text" style="font-size: 10px; font-weight: normal; text-transform: none; display: inline-block; margin-left: 10px;">(self.goodbyeluke)</span></header>
             <div class="subhead">submitted 2 days ago * by <span class="green-text">MoFo</span>[<span class="green-text">M</span>] - <span class="green-text">announcement</span></div>
