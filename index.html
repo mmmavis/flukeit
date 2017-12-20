@@ -6,6 +6,36 @@
     <link rel="icon" type="image/png" sizes="90x90" href="favicon.png">
     <title>flukeit: the farewell page of our favourite mofo</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="handlebars-v4.0.11.js"></script>
+    <script id="comment-template" type="text/x-handlebars-template">
+      <div class="comment" data-id="{{id}}">
+        <div class="vote-controls">vote</div>
+        <div class="comment-main">
+          <div>
+            <span class="blue-text" style="margin-right: 5px;">{{submitter}}</span>
+            <span class="blue-text">{{timestamp}}</span>
+          </div>
+          <div class="content">{{content}}</div>
+          <div>
+            <button class="btn-reply" data-id="{{id}}">reply</button>
+            <div class="reply"></div>
+          </div>
+          <div class="replies"></div>
+        </div>
+      </div>
+    </script>
+    <script id="new-comment-template" type="text/x-handlebars-template">
+      <form class="new-comment" data-parent-id="{{parentId}}">
+        <div><textarea name="content" rows=10 cols=75></textarea></div>
+        <div>Image url (if any): <input name="imgSrc" /></div>
+        <div>Your name: <input name="submitter" /></div>
+        <div>
+          <button type="submit">save</button>
+        </div>
+      </form>
+    </script>
+
   </head>
   <body>
     <nav>
@@ -42,11 +72,11 @@
 
         <div id="comments-section">
           <header>no comments (yet)</header>
-          <div id="new-comment">
-            <textarea rows=10 cols=75 style="border-style: inset;"></textarea>
-            <div style="margin-top: 10px;">
-              <button>save</button>
-            </div>
+          <div id="top-level-new-comment">
+            
+          </div>
+          <div id="comments">
+
           </div>
         </div>
 
@@ -59,5 +89,9 @@
         <img src="right.png" width=300 />
       </div>
     </div>
+
+
+    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
