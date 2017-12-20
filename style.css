@@ -146,6 +146,7 @@ main {
 }
 
 .comment .content {
+  margin-top: 2px;
   font-size: 14px;
 }
 

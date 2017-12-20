@@ -1,7 +1,6 @@
 $("#top-level-new-comment").html(generateNewCommentFormHtml());
 
 Handlebars.registerHelper("timeFromNow", function(timestamp) {
-  console.log(timestamp);
   return moment.unix(timestamp/1000).fromNow();
 });
 
@@ -91,11 +90,10 @@ $("body").on("submit", ".new-comment", function(event) {
   var submitter = $(this).find("[name=submitter]").val();
   var content = $(this).find("[name=content]").val().replace(/\n/g,"<br>");
   var imgSrc = $(this).find("[name=imgSrc]").val();
-  var paretnId = $(this).data("parent-id");
 
-  var ref = "comments";
-  if (paretnId) {
-    ref = ref + "/" + paretnId + "/replies";
+  var ref = getOwnFullRefPathsFromDom($(this));
+  if ($(this).parents(".comment").length > 0) {
+    ref += "/replies";
   }
   var newCommentRef = firebase.database().ref(ref).push();
 
@@ -109,11 +107,25 @@ $("body").on("submit", ".new-comment", function(event) {
   });
 
   // clear form
-  $("[name=submitter], [name=content], [name=imgSrc]").val("");
+  // $("[name=submitter], [name=content], [name=imgSrc]").val("");
 
   // a cheat... lol
   window.location.reload(true);
 });
+
+function getOwnFullRefPathsFromDom($elem) {
+  var refPaths = [];
+  $elem.parents(".comment").each(function() {
+    refPaths.push($(this).data("id"));
+  });
+
+  var ref = 'comments';
+  if (refPaths.length > 0) {
+    ref = ref + "/" + refPaths.reverse().join("/replies/");
+  }
+
+  return ref;
+}
 
 $("#comments").on("click", ".btn-reply", function(event) {
   var $reply = $(this).parent().find(".reply");
@@ -123,13 +135,6 @@ $("#comments").on("click", ".btn-reply", function(event) {
 $("#comments").on("click", "img", function(event) {
   var $comment = $(this).parents(".comment:eq(0)");
   var commentKey = $comment.data("id");
-
-  var refPaths = [];
-  $(this).parents(".comment").each(function() {
-    refPaths.push($(this).data("id"));
-  });
-
-  var ref = 'comments/' + refPaths.reverse().join("/replies/");
   var currentCount = parseInt($comment.find(".count:eq(0)")[0].innerText);
   var newCount = currentCount;
 
@@ -141,6 +146,7 @@ $("#comments").on("click", "img", function(event) {
     newCount--;
   }
 
+  var ref = getOwnFullRefPathsFromDom($(this));
   var commentRef = firebase.database().ref(ref).update({
     voteCount: newCount,
   });
