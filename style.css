@@ -1,0 +1,54 @@
+/* 
+
+blue: #5f99cf
+light blue: #cee3f8
+
+*/
+
+body {
+  font: normal x-small verdana,arial,helvetica,sans-serif;
+  margin: 0;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #5f99cf;
+  background: #cee3f8;
+}
+
+#top-nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f0f0f0;
+  white-space: nowrap;
+  text-transform: uppercase;
+  border-bottom: 1px solid gray;
+  font-size: 90%;
+  height: 18px;
+  line-height: 18px;
+  padding: 0 5px;
+}
+
+#top-nav .more {
+  position: absolute;
+  top: 0;
+  right: 5px;
+}
+
+#bottom-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+#bottom-nav button {
+  font-weight: bold;
+  font-variant: small-caps;
+  font-size: 1.2em;
+}
+
+
+#container {
+  display: flex;
+}
