@@ -32,6 +32,10 @@ nav {
   color: #369;
 }
 
+.grey-text {
+  color: #888;
+}
+
 #top-nav {
   display: flex;
   justify-content: space-between;

@@ -1,5 +1,10 @@
 $("#top-level-new-comment").html(generateNewCommentFormHtml());
 
+Handlebars.registerHelper("timeFromNow", function(timestamp) {
+  console.log(timestamp);
+  return moment.unix(timestamp/1000).fromNow();
+});
+
 // Initialize Firebase
 var config = {
   apiKey: "AIzaSyCnsLQADcST8iP5J8S8DxW5D9t94FaTTZI",
@@ -64,7 +69,6 @@ function renderComment($conatiner, comment) {
   if (comment.replies) {
     Object.keys(comment.replies).forEach(function(key) {
       var reply = comment.replies[key];
-      // console.log(reply, $("[data-id="+comment.id+"]"));
       reply.id = key;
       renderComment($("[data-id="+comment.id+"] .replies:eq(0)"), reply);
     });

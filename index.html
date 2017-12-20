@@ -8,13 +8,14 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <script type="text/javascript" src="jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="handlebars-v4.0.11.js"></script>
+    <script type="text/javascript" src="moment.js"></script>
     <script id="comment-template" type="text/x-handlebars-template">
       <div class="comment" data-id="{{id}}">
         <div class="vote-controls">vote</div>
         <div class="comment-main">
           <div>
             <span class="blue-text" style="margin-right: 5px;">{{submitter}}</span>
-            <span class="blue-text">{{timestamp}}</span>
+            <span class="grey-text">{{timeFromNow timestamp}}</span>
           </div>
           <div class="content">{{content}}</div>
           <div>
@@ -58,7 +59,7 @@
           <div class="vote-controls">vote</div>
           <div style="margin-left: 10px;">icon</div>
           <div style="margin-left: 10px;">
-            <header class="green-text">header 12345 header 12345 header 12345 <span style="color: #888; font-size: 10px; font-weight: normal; text-transform: none; display: inline-block; margin-left: 10px;">(self.goodbyeluke)</span></header>
+            <header class="green-text">header 12345 header 12345 header 12345 <span class="grey-text" style="font-size: 10px; font-weight: normal; text-transform: none; display: inline-block; margin-left: 10px;">(self.goodbyeluke)</span></header>
             <div class="subhead">submitted 2 days ago * by <span class="green-text">MoFo</span>[<span class="green-text">M</span>] - <span class="green-text">announcement</span></div>
             <div class="content">
               <p>Apple pie jelly caramels sweet roll. Dragée sesame snaps chocolate bar. Danish sweet roll cheesecake biscuit cotton candy pudding biscuit tootsie roll.</p>
