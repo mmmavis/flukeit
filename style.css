@@ -22,7 +22,6 @@ textarea {
   width: 100%;
 }
 
-
 @media only screen and (min-width: 480px) {
   textarea {
     max-width: 480px;
@@ -31,6 +30,11 @@ textarea {
 
 img {
   max-width: 100%;
+}
+
+button,
+a {
+  font: normal x-small verdana,arial,helvetica,sans-serif;
 }
 
 nav {
@@ -184,16 +188,20 @@ main {
   }
 }
 
-.comment .controls button {
+.comment .controls button,
+.comment .controls a {
   color: #888;
   font-weight: bold;
+  font-size: 10px;
+  line-height: 1.2;
   padding: 0 1px;
   border: 0;
   background: none;
   padding: 0;
-  margin-right: 5px;
+  margin-right: 10px;
   margin-bottom: 5px;
   cursor: pointer;
+  text-decoration: none;
 }
 
 footer {
