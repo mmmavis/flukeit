@@ -32,6 +32,8 @@ firebase.auth().onAuthStateChanged(function(user) {
     // console.log("user");
 
     renderAllComments(function() {
+      $("#comments-section header").text("all " + $("#comments .comment").length + " comments");
+
       var anchorElemId = window.location.hash;
       if (anchorElemId) {
         document.querySelector(anchorElemId).scrollIntoView({ behavior: "smooth" });
@@ -56,7 +58,6 @@ function renderAllComments(done) {
   firebase.database().ref('/comments').once('value').then(function(snapshot) {
     var comments = snapshot.val();
 
-    $("#comments-section header").text("all " + Object.keys(comments).length + " comments");
     Object.keys(comments).forEach(function(key) {
       var comment = comments[key];
       comment.id = key;
