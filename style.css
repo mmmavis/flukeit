@@ -44,16 +44,6 @@ nav {
   background: #cee3f8;
 }
 
-#right-sidebar {
-  display: none;
-}
-
-@media only screen and (min-width: 480px) {
-  #right-sidebar {
-    display: block;
-  }
-}
-
 .green-text {
   color: #228822;
 }
@@ -99,8 +89,24 @@ nav {
 
 #container {
   display: flex;
+  flex-direction: column-reverse;
   margin: 5px;
 }
+
+#right-sidebar {
+  max-width: 100%;
+}
+
+@media only screen and (min-width: 576px) {
+  #container {
+    flex-direction: row;
+  }
+
+  #right-sidebar {
+    max-width: 300px;
+  }
+}
+
 
 main {
   margin-right: 10px;
