@@ -12,7 +12,7 @@ body {
 }
 
 textarea,
-input[name!=file] {
+input:not([name=image]) {
   border-style: inset;
   margin-bottom: 5px;
   max-width: 100%;
@@ -160,6 +160,10 @@ main {
 
 .new-comment {
   margin-bottom: 20px;
+}
+
+.new-comment > div {
+  margin-bottom: 3px;
 }
 
 .comment {
