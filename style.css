@@ -93,7 +93,7 @@ nav {
   margin: 5px;
 }
 
-#right-sidebar {
+#right-sidebar img {
   max-width: 100%;
 }
 
@@ -102,7 +102,7 @@ nav {
     flex-direction: row;
   }
 
-  #right-sidebar {
+  #right-sidebar img {
     max-width: 300px;
   }
 }
