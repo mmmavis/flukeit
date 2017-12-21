@@ -2,6 +2,7 @@
 // my goal is to quickly get the page working :D
 
 $("#top-level-new-comment").html(generateNewCommentFormHtml());
+$("#main-post .timestamp").html(moment([2017,11,20]).fromNow());
 
 Handlebars.registerHelper("timeFromNow", function(timestamp) {
   return moment.unix(timestamp/1000).fromNow();
