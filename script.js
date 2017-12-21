@@ -148,8 +148,9 @@ $("body").on("submit", ".new-comment", function(event) {
   }
 
   // check if user wanna upload an image
-  var imageFile = $(this).find("[name=image]")[0].files[0];
-  if (imageFile) {
+  var imageFile = $(this).find("[name=image]");
+  if (imageFile.length > 0 ) {
+    imageFile = imageFile[0].files[0];
     uploadImage(imageFile, function(imageShareUrl) {
       imgSrc = imageShareUrl;
       sendComment(ref, timestamp, submitter, content, imgSrc);
