@@ -37,7 +37,7 @@
             <video src="{{imgSrc}}"controls preload="metadata">
               Sorry, your browser doesn't support embedded videos.
             </video>
-          {{else}}
+          {{else if imgSrc}}
             <img src="{{imgSrc}}">
           {{/if}}
             <div>{{{content}}}</div>
