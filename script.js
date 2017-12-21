@@ -66,12 +66,33 @@ function renderAllComments(done) {
   });
 }
 
+
+function isSrcVideo(filename = "") {
+  var ext = filename.split("?")[0].split(".").pop();
+
+  switch (ext.toLowerCase()) {
+    case "mp4":
+    case "avi":
+    case "mpg":
+      return true;
+    }
+
+  return false;
+}
+
+
 function renderComment($conatiner, comment) {
   // var commentsRef = firebase.database().ref('comments/' + id);
   // commentsRef.on('value', function(snapshot) {
   //   var comment = snapshot.val();
   //   console.log(comment);
   // });
+
+  // check if imgSrc is actually a video...
+  if (isSrcVideo(comment.imgSrc)) {
+    comment.imgSrcIsVideo = true;
+  }
+
   $conatiner.append(createCommentHTML(comment));
 
   if (comment.replies) {

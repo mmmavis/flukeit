@@ -3,7 +3,6 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="flukeit: the farewell page of our favourite mofo">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="flukeit">
@@ -34,7 +33,13 @@
             <span class="grey-text">{{timeFromNow timestamp}}</span>
           </div>
           <div class="content">
-            {{#if imgSrc}}<img src="{{imgSrc}}">{{/if}}
+          {{#if imgSrcIsVideo}}
+            <video src="{{imgSrc}}"controls preload="metadata">
+              Sorry, your browser doesn't support embedded videos.
+            </video>
+          {{else}}
+            <img src="{{imgSrc}}">
+          {{/if}}
             <div>{{{content}}}</div>
           </div>
           <div class="controls">
