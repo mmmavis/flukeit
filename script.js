@@ -174,21 +174,17 @@ $("#comments").on("click", ".btn-reply", function(event) {
 
 $("#comments").on("click", "img", function(event) {
   var $comment = $(this).parents(".comment:eq(0)");
-  var commentKey = $comment.data("id");
-  var currentCount = parseInt($comment.find(".count:eq(0)")[0].innerText);
-  var newCount = currentCount;
-
-  if ($(this).hasClass("upvote")) {
-    newCount++;
-  }
-
-  if ($(this).hasClass("downvote")) {
-    newCount--;
-  }
-
   var ref = getOwnFullRefPathsFromDom($(this));
-  var commentRef = firebase.database().ref(ref).update({
-    voteCount: newCount,
+  var $elemClicked = $(this);
+
+  firebase.database().ref(ref).once('value').then(function(snapshot) {
+    var currentCount = snapshot.val().voteCount;
+    var newCount = currentCount;
+
+    if ($elemClicked.hasClass("upvote")) { newCount++; }
+    if ($elemClicked.hasClass("downvote")) { newCount--; }
+
+    firebase.database().ref(ref).update({ voteCount: newCount });
+    $comment.find(".count:eq(0)")[0].innerText = newCount;
   });
-  $comment.find(".count:eq(0)")[0].innerText = newCount;
 });
